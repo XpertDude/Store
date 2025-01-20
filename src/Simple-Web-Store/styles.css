@@ -36,3 +36,9 @@
 .product-link:hover{
     color: blue;
 }
+
+@media screen and (max-width: 600px) {
+    .custom-style{
+        display: none;
+    }
+}

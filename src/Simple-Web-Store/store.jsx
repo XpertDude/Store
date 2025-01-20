@@ -100,10 +100,9 @@ export default function Store() {
                             <thead>
                                 <tr>
                                     <th scope="col">Title</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Description</th>
+                                    <th scope="col" className='custom-style' >Description</th>
                                     <th scope="col">Photo</th>
-                                    <th scope="col">Rate</th>
+                                    <th scope="col" className='custom-style'>Rate</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,11 +111,7 @@ export default function Store() {
                                         <td>
                                             <Link className='text-decoration-none product-link' to={`/product/${product.id}`}>{product.title.slice(0, 80)}...</Link>
                                         </td>
-                                        <td><span
-                                            className="badge bg-danger"
-                                            >${product.price.toFixed(2)}</span>
-                                        </td>
-                                        <td>{product.description.slice(0, 100)}...</td>
+                                        <td className='custom-style'>{product.description.slice(0, 100)}...</td>
                                         <td>
                                             <img
                                                 width={150}
@@ -126,7 +121,7 @@ export default function Store() {
                                             />
                                         </td>
                                         <td style={{ color: 'red' }}><span
-                                            className="badge bg-primary"
+                                            className="badge bg-primary custom-style"
                                             >{product.rating.rate}</span>
                                         </td>
                                     </tr>
