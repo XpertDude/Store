@@ -4,7 +4,7 @@ import ProductPage from './productPage';
 
 function App() {
     return (
-        <Router basename="/Store">
+        <Router basename="Store">
             <Routes>
                 <Route path="/" element={<Store />} />
                 <Route path="/product/:id" element={<ProductPage />} />
