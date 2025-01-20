@@ -8,6 +8,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Store />} />
                 <Route path="/product/:id" element={<ProductPage />} />
+                <Route path="*" element={<h1>404 - Page Not Found</h1>} />
             </Routes>
         </Router>
     );
