@@ -11,7 +11,7 @@ export default function ProductPage() {
     const [quantity, setQuantity] = useState(0);
     const [cart, setCart] = useState([])
     const [isAdded, setIsAdded] = useState(false);
-    console.log(cart);
+
 
     const LoadingEffect = () => (
         <div className="position-absolute top-50 start-50 translate-middle">
