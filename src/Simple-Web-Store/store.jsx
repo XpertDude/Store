@@ -36,8 +36,9 @@ export default function Store() {
         const input = e.target.value.toLowerCase().trim();
         if (!input) {
             setFilteredProducts(products);
+            document.getElementById('category').selectedIndex = 0;
         } else {
-            const filteredBySearch = products.filter((product) =>
+            const filteredBySearch = filteredProducts.filter((product) =>
                 product.title.toLowerCase().includes(input) ||
                 product.description.toLowerCase().includes(input)
             );
