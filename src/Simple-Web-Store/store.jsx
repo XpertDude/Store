@@ -7,7 +7,9 @@ export default function Store() {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState([]);
-
+    const [isProductFound, setIsProductFound] = useState(true);
+    console.log(isProductFound, filteredProducts);
+    
     useEffect(() => {
         setLoading(true);
         fetch('https://fakestoreapi.com/products')
@@ -34,7 +36,7 @@ export default function Store() {
 
     const handleSearchValue = (e) => {
         const input = e.target.value.toLowerCase().trim();
-        if (!input) {
+        if (input.length === '') {
             setFilteredProducts(products);
             document.getElementById('category').selectedIndex = 0;
         } else {
@@ -42,8 +44,14 @@ export default function Store() {
                 product.title.toLowerCase().includes(input) ||
                 product.description.toLowerCase().includes(input)
             );
+            console.log(filteredBySearch);
             if (filteredBySearch.length > 0) {
                 setFilteredProducts(filteredBySearch);
+                setIsProductFound(true)
+                }
+                if (filteredBySearch.length === 0) {
+                    setIsProductFound(false)
+                    setFilteredProducts(products);
                 }
         }
         };
@@ -56,6 +64,7 @@ export default function Store() {
             setFilteredProducts(filtered);
         }
     };
+
 
         const  LoadingEffect = () => (
         <div className="position-absolute top-50 start-50 translate-middle">
@@ -96,18 +105,18 @@ export default function Store() {
                                 ))}
                             </select>
                         </div>
-
                         <table className="table table-white">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Title</th>
-                                    <th scope="col" className='custom-style' >Description</th>
-                                    <th scope="col">Photo</th>
-                                    <th scope="col" className='custom-style'>Rate</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredProducts.map((product) => (
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col" className='custom-style' >Description</th>
+                                <th scope="col">Photo</th>
+                                <th scope="col" className='custom-style'>Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {isProductFound ?                         
+                            filteredProducts.map((product) => (
                                     <tr key={product.id}>
                                         <td>
                                             <Link className='text-decoration-none product-link' to={`/product/${product.id}`}>{product.title.slice(0, 80)}...</Link>
@@ -126,8 +135,16 @@ export default function Store() {
                                             >{product.rating.rate}</span>
                                         </td>
                                     </tr>
-                                ))}
-                            </tbody>
+                                ))
+                        : (
+                            <tr>
+                                <td colSpan="4" className="text-center">
+                                    <span className="badge bg-danger m-2 text-white">Product not found</span>
+                                </td>
+                            </tr>
+                        )
+                        }
+                        </tbody>
                         </table>
                     </div>
                 </div>

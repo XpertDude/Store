@@ -26,22 +26,23 @@ export default function ProductPage() {
         const fullStar = <i className="bi bi-star-fill text-warning"></i>;
         const halfStar = <i className="bi bi-star-half text-warning"></i>;
         const emptyStar = <i className="bi bi-star text-warning"></i>;
-
+    
         const stars = [];
         const wholeStars = Math.floor(rate);
         const hasHalfStar = (rate - wholeStars) >= 0.5;
-
+    
         for (let i = 0; i < wholeStars; i++) {
-            stars.push(fullStar);
+            stars.push(<i key={`full-${i}`} className="bi bi-star-fill text-warning"></i>);
         }
-
+    
         if (hasHalfStar) {
-            stars.push(halfStar);
+            stars.push(<i key="half" className="bi bi-star-half text-warning"></i>);
         }
+    
         while (stars.length < 5) {
-            stars.push(emptyStar);
+            stars.push(<i key={`empty-${stars.length}`} className="bi bi-star text-warning"></i>);
         }
-
+    
         return <>{stars}</>;
     };
 
@@ -93,12 +94,11 @@ export default function ProductPage() {
     }
     const ModalCart = () => {
         return <>
-            <div className='shop border border-secondary bg-light p-2 w-25 h-50'>
-                <i className="bi bi-x-lg fs-5"></i>
+            <div className='shop border border-secondary bg-light p-2 w-50 h-50'>
                 <h5 className='text-center'>Cart</h5>
                 <hr />
                 {isAdded ?
-                    <div className='d-flex gap-2 justify-content-start'>
+                    <div className='container-fluid d-flex gap-2 justify-content-start'>
                         <div className='d-flex flex-column gap-1'>
                             <img width={50} height={60} src={cart.image} alt={cart.name} />
                             <p>Q: <span className='text-danger fs-6'>{cart.quantity}</span></p>
@@ -112,7 +112,7 @@ export default function ProductPage() {
     }
     return (
         <>
-            <section className='d-flex flex-column border border-light m-2 p-5'>
+            <section className='d-flex flex-column border border-light m-2 p-5' key={dataById.id}>
                 {clicked && <ModalCart />}
                 <div className='back'><Link to='/' ><i className="bi bi-arrow-return-left fs-3"></i></Link></div>
                 <div className='cart' onClick={() => setClicked(prevState => !prevState)}><i className="bi bi-cart4 fs-3 text-success"></i></div>
