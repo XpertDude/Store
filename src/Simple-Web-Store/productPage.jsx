@@ -172,7 +172,6 @@ export default function ProductPage() {
                         </table>
                     </div>
                 </div>
-
             </section >
         </>
 

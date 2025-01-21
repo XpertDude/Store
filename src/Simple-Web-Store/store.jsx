@@ -8,7 +8,8 @@ export default function Store() {
     const [loading, setLoading] = useState(false);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [isProductFound, setIsProductFound] = useState(true);
-    console.log(isProductFound, filteredProducts);
+    const [currentCategory, setCurrentCategory] = useState([]);
+    console.log(filteredProducts, currentCategory);
     
     useEffect(() => {
         setLoading(true);
@@ -36,22 +37,21 @@ export default function Store() {
 
     const handleSearchValue = (e) => {
         const input = e.target.value.toLowerCase().trim();
-        if (input.length === '') {
-            setFilteredProducts(products);
-            document.getElementById('category').selectedIndex = 0;
+        
+        if (input === '') {
+            setFilteredProducts(currentCategory)
         } else {
             const filteredBySearch = filteredProducts.filter((product) =>
                 product.title.toLowerCase().includes(input) ||
                 product.description.toLowerCase().includes(input)
             );
-            console.log(filteredBySearch);
             if (filteredBySearch.length > 0) {
                 setFilteredProducts(filteredBySearch);
                 setIsProductFound(true)
                 }
                 if (filteredBySearch.length === 0) {
                     setIsProductFound(false)
-                    setFilteredProducts(products);
+                    setFilteredProducts(currentCategory);
                 }
         }
         };
@@ -62,6 +62,7 @@ export default function Store() {
         } else {
             const filtered = products.filter((product) => product.category === category);
             setFilteredProducts(filtered);
+            setCurrentCategory(filtered)
         }
     };
 
@@ -139,7 +140,7 @@ export default function Store() {
                         : (
                             <tr>
                                 <td colSpan="4" className="text-center">
-                                    <span className="badge bg-danger m-2 text-white">Product not found</span>
+                                    <span className="fs-3 m-2 text-danger">Product not found</span>
                                 </td>
                             </tr>
                         )
