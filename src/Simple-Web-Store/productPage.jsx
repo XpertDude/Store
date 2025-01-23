@@ -12,7 +12,6 @@ export default function ProductPage() {
     const [cart, setCart] = useState([])
     const [isAdded, setIsAdded] = useState(false);
 
-
     const LoadingEffect = () => (
         <div className="position-absolute top-50 start-50 translate-middle">
             <div className="spinner-border text-primary" role="status">

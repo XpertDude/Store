@@ -9,7 +9,8 @@ export default function Store() {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [isProductFound, setIsProductFound] = useState(true);
     const [currentCategory, setCurrentCategory] = useState([]);
-    console.log('filtered',filteredProducts, 'current',currentCategory);
+    const [errorLoading, setErrorLoading] = useState('');
+    console.log(errorLoading);
     
     useEffect(() => {
         setLoading(true);
@@ -22,7 +23,8 @@ export default function Store() {
                 setLoading(false);
             })
             .catch((err) => {
-                console.error('Error:', err);
+                setErrorLoading(err.message)
+                throw new Error('failed to fetch data: ' + err.message)
             });
     }, []);
 
@@ -31,7 +33,7 @@ export default function Store() {
             .then((response) => response.json())
             .then((data) => setCategories(data))
             .catch((err) => {
-                console.error('Error loading categories:', err);
+                throw new Error('failed to get categories: ' + err.message)
             });
     }, []);
 
@@ -46,7 +48,7 @@ export default function Store() {
                 product.description.toLowerCase().includes(input)
             );
             if (filteredBySearch.length > 0) {
-                setFilteredProducts(filteredBySearch);
+                setFilteredProducts(currentCategory);
                 setIsProductFound(true)
                 }
                 if (filteredBySearch.length === 0) {
@@ -69,10 +71,11 @@ export default function Store() {
 
 
         const  LoadingEffect = () => (
-        <div className="position-absolute top-50 start-50 translate-middle">
+        <div className="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center">
             <div className="spinner-border text-primary" role="status">
-                <span className="visually-hidden">Loading...</span>
+                <span className="visually-hidden"></span>
             </div>
+            <p className='text-center mt-2'>{errorLoading}</p>
         </div>
     );
 
