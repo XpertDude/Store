@@ -9,7 +9,7 @@ export default function Store() {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [isProductFound, setIsProductFound] = useState(true);
     const [currentCategory, setCurrentCategory] = useState([]);
-    console.log(filteredProducts, currentCategory);
+    console.log('filtered',filteredProducts, 'current',currentCategory);
     
     useEffect(() => {
         setLoading(true);
@@ -59,6 +59,7 @@ export default function Store() {
     const filterByCategory = (category) => {
         if (category === 'All') {
             setFilteredProducts(products);
+            setCurrentCategory(products)
         } else {
             const filtered = products.filter((product) => product.category === category);
             setFilteredProducts(filtered);
@@ -97,7 +98,8 @@ export default function Store() {
                                 className="form-select w-50"
                                 name="category"
                                 id="category"
-                                onChange={(e) => filterByCategory(e.target.value)}>
+                                onChange={(e) => filterByCategory(e.target.value)
+                                }>
                                 <option  value='All'>All</option>
                                 {categories.map((category, index) => (
                                     <option key={index} value={category}>
