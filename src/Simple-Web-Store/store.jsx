@@ -11,7 +11,7 @@ export default function Store() {
     const [currentCategory, setCurrentCategory] = useState([]);
     const [errorLoading, setErrorLoading] = useState('');
     console.log(errorLoading);
-    
+
     useEffect(() => {
         setLoading(true);
         fetch('https://fakestoreapi.com/products')
@@ -20,6 +20,7 @@ export default function Store() {
             .then((data) => {
                 setProducts(data);
                 setFilteredProducts(data);
+                setCurrentCategory(data);
                 setLoading(false);
             })
             .catch((err) => {
