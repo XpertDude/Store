@@ -39,11 +39,11 @@ export default function QuoteMachine() {
     }, [bgColor]);
     return (
         <motion.section
-            className="w-75 h-100 text-center p-3"
+            className="w-75 h-100 text-center p-3 "
         >
             <motion.div
                 id="quote-box"
-                className="w-100 h-100 p-3"
+                className="rounded w-100 h-100 p-3"
                 style={{ maxWidth: "700px", wordWrap: "break-word", backgroundColor: 'whitesmoke' }}
             >
                 <AnimatePresence mode="wait">
