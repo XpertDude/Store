@@ -1,0 +1,44 @@
+.back{
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.cart{
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.shop{
+    position: fixed;
+    top: 10%;
+    right: 6%;
+}
+
+.bi-x-lg{
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.bi-trash3{
+    cursor: pointer;
+}
+
+.product-link{
+ color: black;
+}
+
+.product-link:hover{
+    color: blue;
+}
+
+@media screen and (max-width: 600px) {
+    .custom-style{
+        display: none;
+    }
+}
