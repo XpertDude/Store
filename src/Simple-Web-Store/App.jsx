@@ -4,9 +4,7 @@ import ProductPage from './productPage';
 
 function App() {
     return (
-        <Router basename="Store" future={{
-            v7_startTransition: true,
-        }}>
+        <Router basename="Store">
             <Routes>
                 <Route path="/" element={<Store />} />
                 <Route path="/product/:id" element={<ProductPage />} />
