@@ -21,11 +21,7 @@ export default function ProductPage() {
     );
 
 
-    const RatingStars = (rate) => {
-        const fullStar = <i className="bi bi-star-fill text-warning"></i>;
-        const halfStar = <i className="bi bi-star-half text-warning"></i>;
-        const emptyStar = <i className="bi bi-star text-warning"></i>;
-    
+    const RatingStars = (rate) => {    
         const stars = [];
         const wholeStars = Math.floor(rate);
         const hasHalfStar = (rate - wholeStars) >= 0.5;
